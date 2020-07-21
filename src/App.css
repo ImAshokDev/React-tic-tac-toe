@@ -1,0 +1,32 @@
+.square {
+  background-color: white;
+  border: 1px solid gray;
+  float: left;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+.square:focus {
+  outline: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.board-box {
+  width: 300px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: auto;
+}
+
+.board-row:after {
+  display: table;
+}
+
+h3 {
+  text-align: center;
+}
