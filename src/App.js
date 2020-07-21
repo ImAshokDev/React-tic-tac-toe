@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import Game from "./component/Game";
+import HomePage from "./component";
 
 function App() {
   return (
     <div className="App">
       <h1>Tic Tac Toe</h1>
-      <Game />
+      <HomePage />
     </div>
   );
 }
