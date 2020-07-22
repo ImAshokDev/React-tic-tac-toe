@@ -18,6 +18,9 @@
 .square:focus {
   outline: none;
 }
+.square:hover {
+  background: lightgray;
+}
 
 h1 {
   text-align: center;
@@ -98,11 +101,12 @@ h3 {
 }
 
 #winnerBtn {
-  margin: 20px 0 40px 215px;
+  margin: 20px 0 40px 175px;
   font-size: 26px;
   font-weight: bold;
   border: gray;
   background: rgb(223, 108, 238);
   color: white;
   padding: 20px;
+  width: 300px;
 }

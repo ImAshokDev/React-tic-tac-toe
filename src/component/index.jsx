@@ -3,7 +3,8 @@ import Board from "./Board";
 import { connect } from "react-redux";
 import Form from "./InputForm";
 import { CHANGEPLAYERS } from "../Redux/types";
-import Countdown from "./CountDown";
+import { Button } from "./Button";
+import { calculateWinner } from "./Winner";
 
 class Game extends Component {
   state = {
@@ -40,10 +41,17 @@ class Game extends Component {
       player1: "",
       player2: "",
     });
+
+    this.setState({
+      squares: Array(9).fill(null),
+      count: 0,
+      xIsNext: true,
+    });
   }
 
   render() {
     const { pName1, pName2 } = this.props;
+    const { xIsNext } = this.state;
 
     const winner = calculateWinner(this.state.squares);
     let status;
@@ -59,7 +67,6 @@ class Game extends Component {
       } else if (this.state.count < 1) {
         status = "";
       } else {
-        // status = "Next player is " + (this.state.xIsNext ? "X" : "O");
         status = "";
       }
     }
@@ -97,27 +104,13 @@ class Game extends Component {
               )}
             </div>
             <div className="name-block">
-              <button
-                type="button"
-                style={{
-                  background: this.state.xIsNext ? "Green" : "",
-                  color: this.state.xIsNext ? "white" : "black",
-                }}
-              >
-                {pName1}
-              </button>
-
-              <button
-                type="button"
-                id="playerBtn2"
-                style={{
-                  background: !this.state.xIsNext ? "Green" : "",
-                  color: !this.state.xIsNext ? "white" : "black",
-                  float: "right",
-                }}
-              >
-                {pName2}
-              </button>
+              <Button playerName={pName1} xIsNext={xIsNext} />
+              <Button
+                playerName={pName2}
+                xIsNext={!xIsNext}
+                floatLeft="right"
+                btnId="playerBtn2"
+              />
             </div>
           </div>
         ) : (
@@ -138,7 +131,6 @@ class Game extends Component {
             {status}
           </button>
         )}
-        <Countdown timeChange={this.state.xIsNext} />
       </div>
     );
   }
@@ -156,27 +148,5 @@ const mapDispatchToProps = (dispatch) => {
     dispatch,
   };
 };
-
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-      return squares[a];
-    }
-  }
-
-  return null;
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

@@ -1,57 +1,47 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { PLAYER1 } from "../Redux/types";
+import { InputField } from "./InputField";
 
-class Form extends Component {
-  state = {
-    value1: "",
-    value2: "",
-  };
+function Form(props) {
+  const [value1, setValue1] = useState("");
+  const [value2, setValue2] = useState("");
 
-  handleChange(e) {
-    // console.log(this.state.value);
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  formSubmit(e) {
+  const formSubmit = (e) => {
     e.preventDefault();
 
-    this.props.dispatch({
+    props.dispatch({
       type: PLAYER1,
       payload: {
-        player1: this.state.value1,
-        player2: this.state.value2,
+        player1: value1,
+        player2: value2,
       },
     });
+    setValue1("");
+    setValue2("");
+  };
 
-    this.setState({ value1: "", value2: "" });
-  }
-  render() {
-    const { value1, value2 } = this.state;
+  return (
+    <div className="form-block">
+      <form onSubmit={formSubmit}>
+        <InputField
+          name="value1"
+          value={value1}
+          inputChange={(e) => setValue1(e.target.value)}
+          placeholder="Player1 Name"
+        />
 
-    return (
-      <div className="form-block">
-        <form onSubmit={this.formSubmit.bind(this)}>
-          <input
-            name="value1"
-            type="text"
-            value={value1}
-            onChange={this.handleChange.bind(this)}
-            placeholder="Player1 Name"
-          />
-          <br />
-          <input
-            name="value2"
-            type="text"
-            value={value2}
-            onChange={this.handleChange.bind(this)}
-            placeholder="Player2 Name"
-          />
-          <button type="submit">Go</button>
-        </form>
-      </div>
-    );
-  }
+        <InputField
+          name="value2"
+          value={value2}
+          inputChange={(e) => setValue2(e.target.value)}
+          placeholder="Player2 Name"
+        />
+
+        <button type="submit">Go</button>
+      </form>
+    </div>
+  );
 }
 
 const mapDispatchToProps = (dispatch) => {
