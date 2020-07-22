@@ -1,4 +1,4 @@
-import { PLAYER1 } from "./types";
+import { PLAYER1, CHANGEPLAYERS } from "./types";
 
 const initialState = {
   player1: "",
@@ -13,7 +13,7 @@ const reducer = (state = initialState, actions) => {
     };
   }
 
-  if (actions.type === "CHANGEPLAYERS") {
+  if (actions.type === CHANGEPLAYERS) {
     return {
       player1: actions.player1,
       player2: actions.player2,

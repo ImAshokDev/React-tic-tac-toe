@@ -1,3 +1,10 @@
+.container {
+  width: 650px;
+  padding: 20px 0;
+  border: 1px solid gray;
+  margin: 30px auto;
+}
+
 .square {
   background-color: white;
   border: 1px solid gray;
@@ -17,7 +24,7 @@ h1 {
 }
 
 .board-box {
-  width: 300px;
+  width: 244px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   margin: auto;
@@ -31,15 +38,9 @@ h3 {
   text-align: center;
 }
 
-.container {
-  width: 650px;
-  padding: 20px 0;
-  border: 1px solid gray;
-  margin: auto;
-}
 .form-block {
   width: 300px;
-  margin: 0 auto 165px auto;
+  margin: 0 auto 20px auto;
 }
 .form-block input {
   height: 34px;
@@ -57,7 +58,7 @@ h3 {
 }
 
 .name-block {
-  margin: 0 0 100px 0;
+  margin: 0 0 60px 0;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -70,11 +71,12 @@ h3 {
   border-radius: 8px;
   font-size: 22px;
   font-weight: bold;
+  border: 1px solid green;
 }
 
 .start-block {
   width: 150px;
-  margin: 50px auto 0 auto;
+  margin: 30px auto 0 auto;
 }
 .start-block button {
   width: 100%;
@@ -87,11 +89,20 @@ h3 {
   cursor: pointer;
 }
 #changeBtn {
-  height: 48px;
+  height: 46px;
   outline: none;
   border-radius: 10px;
   font-size: 18px;
-
   border: 1px solid goldenrod;
   cursor: pointer;
+}
+
+#winnerBtn {
+  margin: 20px 0 40px 215px;
+  font-size: 26px;
+  font-weight: bold;
+  border: gray;
+  background: rgb(223, 108, 238);
+  color: white;
+  padding: 20px;
 }

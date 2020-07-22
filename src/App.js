@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import Game from "./component/Game";
+import Game from "./component";
+import Countdown from "./component/CountDown";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <h1>Tic Tac Toe</h1>
 
       <Game />
+      <Countdown />
     </div>
   );
 }

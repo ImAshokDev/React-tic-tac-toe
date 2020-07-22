@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Board from "./Board";
 import { connect } from "react-redux";
 import Form from "./InputForm";
+import { CHANGEPLAYERS } from "../Redux/types";
+import Countdown from "./CountDown";
 
 class Game extends Component {
   state = {
@@ -9,6 +11,7 @@ class Game extends Component {
     squares: Array(9).fill(null),
     count: 0,
     reset: false,
+    start: false,
   };
 
   handleClick(i) {
@@ -28,13 +31,12 @@ class Game extends Component {
       squares: Array(9).fill(null),
       count: 0,
       xIsNext: true,
-      reset: false,
     });
   }
 
   changePlayers() {
     this.props.dispatch({
-      type: "CHANGEPLAYERS",
+      type: CHANGEPLAYERS,
       player1: "",
       player2: "",
     });
@@ -47,17 +49,9 @@ class Game extends Component {
     let status;
     if (winner) {
       if (winner === "X") {
-        status = (
-          <button type="button" id="winnerBtn">
-            {pName1} Wins!
-          </button>
-        );
+        status = `${pName1} Wins!`;
       } else {
-        status = (
-          <button type="button" id="winnerBtn">
-            {pName2} Wins!
-          </button>
-        );
+        status = `${pName2} Wins!`;
       }
     } else {
       if (this.state.count === 9) {
@@ -65,7 +59,8 @@ class Game extends Component {
       } else if (this.state.count < 1) {
         status = "";
       } else {
-        status = "Next player is " + (this.state.xIsNext ? "X" : "O");
+        // status = "Next player is " + (this.state.xIsNext ? "X" : "O");
+        status = "";
       }
     }
 
@@ -82,7 +77,7 @@ class Game extends Component {
             </button>
 
             <div className="start-block">
-              {this.state.reset ? (
+              {this.state.reset && this.state.count !== 0 ? (
                 <button type="button" onClick={() => this.handleReset()}>
                   RESET
                 </button>
@@ -90,7 +85,12 @@ class Game extends Component {
                 <button
                   type="button"
                   id="startBtn"
-                  onClick={() => this.setState({ reset: true })}
+                  onClick={() =>
+                    this.setState({
+                      reset: true,
+                      start: true,
+                    })
+                  }
                 >
                   START
                 </button>
@@ -125,16 +125,20 @@ class Game extends Component {
         )}
 
         <div className="game-board">
-          <Board
-            squares={this.state.squares}
-            boxClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div>
-          <h3>{status}</h3>
+          {this.state.start && (
+            <Board
+              squares={this.state.squares}
+              boxClick={(i) => this.handleClick(i)}
+            />
+          )}
         </div>
 
-        <h1>{this.state.count}</h1>
+        {status && (
+          <button type="button" id="winnerBtn">
+            {status}
+          </button>
+        )}
+        <Countdown timeChange={this.state.xIsNext} />
       </div>
     );
   }
