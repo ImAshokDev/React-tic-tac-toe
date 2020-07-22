@@ -3,7 +3,7 @@ import Board from "./Board";
 import { connect } from "react-redux";
 import Form from "./InputForm";
 import { CHANGEPLAYERS } from "../Redux/types";
-import { Button } from "./Button";
+import { Button } from "../component/Button";
 import { calculateWinner } from "./Winner";
 
 class Game extends Component {

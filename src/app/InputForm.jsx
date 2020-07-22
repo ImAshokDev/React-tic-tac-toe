@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { PLAYER1 } from "../Redux/types";
-import { InputField } from "./InputField";
+import { InputField } from "../component/InputField";
 
 function Form(props) {
   const [value1, setValue1] = useState("");
