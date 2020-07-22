@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
-import HomePage from "./component";
-import ReduxForm from "./Redux/InputForm";
+import Game from "./component/Game";
 
 function App() {
   return (
     <div className="App">
       <h1>Tic Tac Toe</h1>
-      <HomePage />
-      <ReduxForm />
+
+      <Game />
     </div>
   );
 }

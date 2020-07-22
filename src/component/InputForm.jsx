@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { PLAYER1 } from "./types";
+import { PLAYER1 } from "../Redux/types";
 
-class ReduxForm extends Component {
+class Form extends Component {
   state = {
     value1: "",
     value2: "",
@@ -28,10 +28,9 @@ class ReduxForm extends Component {
   }
   render() {
     const { value1, value2 } = this.state;
-    const { pName1, pName2 } = this.props;
 
     return (
-      <div>
+      <div className="form-block">
         <form onSubmit={this.formSubmit.bind(this)}>
           <input
             name="value1"
@@ -40,7 +39,7 @@ class ReduxForm extends Component {
             onChange={this.handleChange.bind(this)}
             placeholder="Player1 Name"
           />
-
+          <br />
           <input
             name="value2"
             type="text"
@@ -48,23 +47,12 @@ class ReduxForm extends Component {
             onChange={this.handleChange.bind(this)}
             placeholder="Player2 Name"
           />
-
-          <button type="submit">Submit</button>
+          <button type="submit">Go</button>
         </form>
-
-        <p>player1: {pName1}</p>
-        <p>player2: {pName2}</p>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    pName1: state.player1,
-    pName2: state.player2,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -72,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReduxForm);
+export default connect(null, mapDispatchToProps)(Form);

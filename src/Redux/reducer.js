@@ -13,6 +13,13 @@ const reducer = (state = initialState, actions) => {
     };
   }
 
+  if (actions.type === "CHANGEPLAYERS") {
+    return {
+      player1: actions.player1,
+      player2: actions.player2,
+    };
+  }
+
   return state;
 };
 
