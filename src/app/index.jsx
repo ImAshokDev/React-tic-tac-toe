@@ -5,14 +5,18 @@ import Form from "./InputForm";
 import { CHANGEPLAYERS } from "../Redux/types";
 import { Button } from "../component/Button";
 import { calculateWinner } from "./Winner";
+import CountDown from "./CountDown";
 
 class Game extends Component {
   state = {
     xIsNext: true,
     squares: Array(9).fill(null),
     count: 0,
-    reset: false,
+    reset: true,
     start: false,
+    currentPlayer: "",
+    counter1: 5,
+    counter2: 5,
   };
 
   handleClick(i) {
@@ -21,12 +25,15 @@ class Game extends Component {
       return;
     }
     squares[i] = this.state.xIsNext ? "X" : "O";
+
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
       count: this.state.count + 1,
+      currentPlayer: squares[i],
     });
   }
+
   handleReset() {
     this.setState({
       squares: Array(9).fill(null),
@@ -51,7 +58,15 @@ class Game extends Component {
 
   render() {
     const { pName1, pName2 } = this.props;
-    const { xIsNext } = this.state;
+    const {
+      xIsNext,
+      reset,
+      start,
+      count,
+      squares,
+      counter1,
+      counter2,
+    } = this.state;
 
     const winner = calculateWinner(this.state.squares);
     let status;
@@ -84,7 +99,7 @@ class Game extends Component {
             </button>
 
             <div className="start-block">
-              {this.state.reset && this.state.count !== 0 ? (
+              {reset && count !== 0 ? (
                 <button type="button" onClick={() => this.handleReset()}>
                   RESET
                 </button>
@@ -118,11 +133,17 @@ class Game extends Component {
         )}
 
         <div className="game-board">
-          {this.state.start && (
-            <Board
-              squares={this.state.squares}
-              boxClick={(i) => this.handleClick(i)}
-            />
+          {start && (
+            <>
+              <CountDown
+                count1={counter1}
+                count2={counter2}
+                xIsNext={xIsNext}
+                start={start}
+                currentPlayer={this.state.currentPlayer}
+              />
+              <Board squares={squares} boxClick={(i) => this.handleClick(i)} />
+            </>
           )}
         </div>
 

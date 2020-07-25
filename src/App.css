@@ -30,7 +30,7 @@ h1 {
   width: 244px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  margin: auto;
+  margin: -120px 0 0 220px;
 }
 
 .board-row:after {
@@ -43,6 +43,7 @@ h3 {
 
 .form-block {
   width: 300px;
+  height: 200px;
   margin: 0 auto 20px auto;
 }
 .form-block input {
@@ -61,8 +62,9 @@ h3 {
 }
 
 .name-block {
-  margin: 0 0 60px 0;
+  margin: 0 0 150px 0;
   width: 100%;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 260px;
@@ -109,4 +111,23 @@ h3 {
   color: white;
   padding: 20px;
   width: 300px;
+}
+
+.countdown1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid gray;
+  text-align: center;
+  float: left;
+  margin-left: 50px;
+}
+
+.countdown2 {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid gray;
+  margin: 0 0 0 540px;
 }
